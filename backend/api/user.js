@@ -80,6 +80,9 @@ function signIn() {
 
             return res.status(200).send({
               message: "User successfully logged in",
+              idUser: user[0].id,
+              nameUser: user[0].name,
+              emailUser: user[0].email,
               token
             });
           });
