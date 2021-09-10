@@ -1,4 +1,7 @@
--- Tabela para armazenar usuarios
+-- Criando o banco de dados
+create database quiz;
+
+--Tabela para armazenar usuarios
 create table users(
     id serial primary key,
     name varchar(255) not null,

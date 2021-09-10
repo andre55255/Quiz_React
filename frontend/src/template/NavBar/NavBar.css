@@ -1,0 +1,30 @@
+.navBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+}
+
+.navBar > p {
+    margin: 0 .2rem;
+}
+
+.navItem {
+    padding: .4rem;
+    transition: all .5s;
+}
+
+.navItem:hover {
+    background-color: #4B5043;
+    color: #fff;
+}
+
+.navItemExit {
+    margin: 0 .2rem;
+    color: #c51b1b;
+}
+
+.navItemExit:hover {
+    text-decoration: underline;
+}

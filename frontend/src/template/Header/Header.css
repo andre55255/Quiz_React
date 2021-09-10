@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+    width: 100vw;
+}
+
+.actionTransition {
+    color: "#4B5043";
+    cursor: pointer;
+    transition: all .5s;
+}
+
+.actionTransition:hover {
+    color: #95a180;
+}
+
+.actionTransition:active {
+    color: #befa56;
+}
