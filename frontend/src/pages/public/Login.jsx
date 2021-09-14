@@ -92,7 +92,13 @@ export default function Login() {
     }
 
     return (
-        <div className="container-login">
+        <div className="container-login"
+            onKeyPress={(e) => {
+                if (e.code === "Enter") {
+                    document.getElementById("btnSignIn").click();
+                }
+            }}
+        >
             <Box bg="#003554" w="80%" color="#fff" padding="3" borderRadius="md" textAlign="center">
                 <Text fontSize="xl">
                     Login
@@ -131,6 +137,7 @@ export default function Login() {
                                 colorScheme="blue"
                                 size="sm"
                                 onClick={signIn}
+                                id="btnSignIn"
                             >
                                 Login
                             </Button>

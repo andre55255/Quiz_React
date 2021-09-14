@@ -4,24 +4,57 @@ function newCategory() {
     return function(req, res) {
         const { category } = req.body;
         if (category) {
-            db.insert({
-                description: category
-            })
-            .table("category")
-            .then(_ => res.status(201).send({ message: "Category created successfully" }))
-            .catch(err => {
-                console.log(err);
-                return res.status(500).send({ error: "Internal server error" });
-            });
+            db.select("*")
+                .table("category")
+                .where({ description: category })
+                .then(data => {
+                    if(data.length) return res.status(409).send({ error: "Category already exists" });
+
+                    db.insert({
+                        description: category
+                    })
+                    .table("category")
+                    .then(_ => res.status(201).send({ message: "Category created successfully" }))
+                    .catch(err => {
+                        console.log(err);
+                        return res.status(500).send({ error: "Internal server error" });
+                    });
+                })
+                .catch(err => {
+                    console.log(err);
+                    return res.status(500).send({ error: "Internal server error" });
+                });
         } else {
             return res.status(400).send({ error: "Data not reported" });
         }
     }
 }
 
-function removeCategory() {
+function removeCategoryById() {
+    return function (req, res) {
+        const id = parseInt(req.query.id);
+
+        if (id) {
+            db.select("*")
+                .table("category")
+                .where({
+                    id
+                })
+                .delete()
+                .then(_ => res.status(200).send({ message: "Category deleted successfully" }))
+                .catch(err => {
+                    console.log(err);
+                    return res.status(500).send({ error: "Internal server error" });
+                });
+        } else {
+            return res.status(400).send({ error: "Data not reported" });
+        }
+    }
+}
+
+function removeCategoryByDescription() {
     return async function(req, res) {
-        const { category } = req.query;
+        const category = req.query.category;
         if (category) {
             try {
                 const idCategory = await db.select("*")
@@ -96,7 +129,8 @@ function selectCategories() {
 
 module.exports = {
     newCategory,
-    removeCategory,
+    removeCategoryById,
+    removeCategoryByDescription,
     updateCategory,
     selectCategories
 }

@@ -119,7 +119,13 @@ export default function Register() {
     }
 
     return (
-        <div className="container-register">
+        <div className="container-register"
+            onKeyPress={(e) => {
+                if (e.code === "Enter") {
+                    document.getElementById("btnRegister").click();
+                }
+            }}
+        >
             <Box bg="#006494" w="80%" color="#fff" padding="3" borderRadius="md" textAlign="center">
                 <Text fontSize="xl">
                     Registrar-se
@@ -187,6 +193,7 @@ export default function Register() {
                                 colorScheme="blue"
                                 size="sm"
                                 onClick={signUp}
+                                id="btnRegister"
                             >
                                 Registrar
                             </Button>

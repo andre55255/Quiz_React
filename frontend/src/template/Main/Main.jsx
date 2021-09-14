@@ -3,7 +3,7 @@ import './Main.css';
 
 export default function Main(props) {
     return (
-        <main>
+        <main className="main">
             {props.children}
         </main>
     );

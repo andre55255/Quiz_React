@@ -3,8 +3,8 @@ import './Footer.css';
 
 export default function Footer() {
     return (
-        <footer>
-            Footer
+        <footer className="footer">
+            &copy; Desenvolvido por André Luiz Barros
         </footer>
     );
 }

@@ -1,12 +1,19 @@
 import React, { useContext, useEffect } from 'react';
-import { authContext } from '../../providers/auth';
+import { authContext } from '../../../providers/auth';
 import { useHistory } from 'react-router-dom';
-import Template from '../../template/Index';
-import { useToast, Box, Heading, Text } from "@chakra-ui/react";
+
+import Template from '../../../template/Index';
+import NewCategory from './NewCategory';
+import TableCategory from './TableCategory';
+
+import { 
+    useToast, 
+    Heading
+} from "@chakra-ui/react";
 
 import axios from 'axios';
 
-export default function Home() {
+export default function Category() {
     
     const { user, setUser } = useContext(authContext);
     const toast = useToast();
@@ -56,27 +63,18 @@ export default function Home() {
         });
     }, [user, setUser, toast, history]);
 
+
+
     return (
         <Template>
-            <Box
-                bg="#9BC4BC55"
-                w="80vw"
-                h="60vh"
-                marginTop="1.5rem"
-                padding="1rem"
+            <Heading
+                fontSize="lg"
+                paddingTop=".5rem"
             >
-                <Heading
-                    size="lg"
-                >
-                    Bem vindo(a), {user.nameUser}
-                </Heading>
-                <Text
-                    marginTop=".5rem"
-                    fontSize="lg"
-                >
-                    Aproveite bem o nosso app de simulação de quiz
-                </Text>
-            </Box>
+                Gestão das categorias
+            </Heading>
+            <NewCategory token={user.token}/>
+            <TableCategory token={user.token}/>
         </Template>
     );
 }

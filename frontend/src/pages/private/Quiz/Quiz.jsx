@@ -1,16 +1,25 @@
-import React, { useContext, useEffect } from 'react';
-import { authContext } from '../../providers/auth';
+import React, { useEffect, useContext } from 'react';
+
+import { authContext } from '../../../providers/auth';
 import { useHistory } from 'react-router-dom';
-import Template from '../../template/Index';
-import { useToast, Box, Heading, Text } from "@chakra-ui/react";
+
+import Template from '../../../template/Index';
+import NewQuiz from './NewQuiz';
+import TableQuiz from './TableQuiz';
+
+import {
+    Heading,
+    useToast
+} from '@chakra-ui/react';
 
 import axios from 'axios';
 
-export default function Home() {
-    
-    const { user, setUser } = useContext(authContext);
-    const toast = useToast();
+export default function Quiz() {
+
     const history = useHistory();
+    const toast = useToast();
+
+    const { user, setUser } = useContext(authContext);
 
     useEffect(() => {
         axios({
@@ -52,31 +61,28 @@ export default function Home() {
                 isClosable: true,
                 duration: 4000    
             });
+            setUser({
+                idUser: '',
+                nameUser: '',
+                emailUser: '',
+                token: ''
+            });
+            
+            localStorage.clear();
             history.push("/");
         });
     }, [user, setUser, toast, history]);
 
     return (
         <Template>
-            <Box
-                bg="#9BC4BC55"
-                w="80vw"
-                h="60vh"
-                marginTop="1.5rem"
-                padding="1rem"
+            <Heading
+                fontSize="lg"
+                paddingTop=".5rem"
             >
-                <Heading
-                    size="lg"
-                >
-                    Bem vindo(a), {user.nameUser}
-                </Heading>
-                <Text
-                    marginTop=".5rem"
-                    fontSize="lg"
-                >
-                    Aproveite bem o nosso app de simulação de quiz
-                </Text>
-            </Box>
+                Gestão de Quiz
+            </Heading>
+            <NewQuiz token={user.token}/>
+            <TableQuiz token={user.token}/>
         </Template>
-    );
+    )
 }

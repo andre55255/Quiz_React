@@ -4,7 +4,7 @@ const verifyToken = require("../middlewares/verifyToken");
 
 router.post("/new", verifyToken, apiQuiz.newQuiz());
 
-router.delete("/delete", verifyToken, apiQuiz.deleteQuiz());
+router.delete("/delete/:quiz/:category", verifyToken, apiQuiz.deleteQuiz());
 
 router.get("/all", verifyToken, apiQuiz.selectAllQuizes());
 

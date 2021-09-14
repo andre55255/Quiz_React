@@ -10,7 +10,7 @@ import { Grid, GridItem } from "@chakra-ui/react";
 export default function Index(props) {
     return (
         <Grid
-            h="100vh"
+            h="100%"
             templateRows="repeat(12, 1fr)"
             templateColumns="repeat(3, 1fr)"
             gap={1}
@@ -43,7 +43,7 @@ export default function Index(props) {
                 rowSpan={1}
                 colSpan={3}
                 bg="#f3ede9"
-                opacity="0.4"
+                opacity="0.8"
             >
                 <Footer/>
             </GridItem>

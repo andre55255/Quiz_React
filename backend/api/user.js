@@ -74,7 +74,7 @@ function signIn() {
               },
               process.env.JWT_KEY,
               {
-                expiresIn: "0.5h",
+                expiresIn: "1h"
               }
             );
 

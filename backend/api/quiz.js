@@ -12,8 +12,8 @@ function newQuiz() {
         db.transaction(async trans => {
             try {
                 const idCategory = await trans.select("*")
-                .table("category")
-                .where({ description: category });
+                                                .table("category")
+                                                .where({ description: category });
                 
                 if (idCategory.length <= 0) return res.status(404).send({ error: "Categoria not found" });
                 

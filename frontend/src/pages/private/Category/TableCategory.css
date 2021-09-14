@@ -1,0 +1,29 @@
+.icoDelete {
+    font-size: 1.2rem;
+    color: #ff0000;
+    cursor: pointer;
+    transition: all .5s;
+}
+
+.icoDelete:hover {
+    color: #f08585;
+}
+
+.icoDelete:active {
+    color: #9da099;
+}
+
+.icoUpdate {
+    font-size: 1.2rem;
+    color: #bbb81d;
+    cursor: pointer;
+    transition: all .5s;
+}
+
+.icoUpdate:hover {
+    color: #f5f12a;
+}
+
+.icoUpdate:active {
+    color: #9da099;
+}
