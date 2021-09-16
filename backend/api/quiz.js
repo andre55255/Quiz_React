@@ -8,6 +8,20 @@ function newQuiz() {
         if (!idUser && !emailUser) return res.status(401).send({ error: "Authenticated failed" });
 
         if (!quiz && !category) return res.status(400).send({ error: "Data not reported" });
+
+        db.select("*")
+            .table("quiz")
+            .where({
+                id_user: idUser,
+                name: quiz
+            })
+            .then(data => {
+                if (data.length > 0) return res.status(409).send({ error: "Quiz already exists" });
+            })
+            .catch(err => {
+                console.log(err);
+                return res.status(500).send({ error: "Internal server error" });
+            });
         
         db.transaction(async trans => {
             try {
