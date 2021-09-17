@@ -7,8 +7,8 @@ const PORT = process.env.SERVER_PORT || 8081;
 const user = require("./routes/user");
 const category = require("./routes/category");
 const quiz = require("./routes/quiz");
+const verification = require('./routes/verification');
 const question = require("./routes/question");
-const verification = require('./routes/verification')
 
 /* Middlewares */
 app.use(express.urlencoded({ extended: true }));

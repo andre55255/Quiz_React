@@ -4,4 +4,6 @@ const verifyToken = require("../middlewares/verifyToken");
 
 router.post("/new", verifyToken, apiQuestion.newQuestion());
 
+router.get("/all", verifyToken, apiQuestion.allQuestionsByQuizByUser());
+
 module.exports = router;
